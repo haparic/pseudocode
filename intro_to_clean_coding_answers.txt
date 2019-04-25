@@ -1,0 +1,160 @@
+In your own words, explain what clean code is and why it is important.
+Clean code is code that is written efficiently and that can be easily understood by anyone looking at it.
+It should be able to explain itself by reading it and it should be properly formatted to help read it.
+
+2. Boeing is currently going through the same issues with it's 737 MAX 8 airplane. The auto assist was 
+misreading a sensor and causing the aircraft to nosedive. People unfortunately lost their lives.
+
+3.
+Function convertTemperature ( initialDegrees, temperatureUnit)
+  IF temperatureUnit = "fahrenheit" THEN
+  set newTemperature to (( initialDegrees-32) * (5/9)) //fahrenheit to celsius
+  PRINT newTemperature 
+  Else IF temperatureUnit = "celsius" THEN
+  set newTemperature to ((initialDegrees* 1.80) + 32.00) //celsius to fahrenheit
+  PRINT newTemperature
+  END IF
+ END FUNCTION
+ 
+ the variables were not marked so it was confusing to understand at first. 
+ gave more descriptive titles to everthing
+
+ 4. 
+ FUNCTION calculatePercentage(sum, total)
+  IF (total = 0) THEN
+     PRINT "Sorry, cannot divide by 0"
+  ELSE THEN
+    SET percentage to sum / total * 100
+    PRINT percentage
+  END IF
+END FUNCTION
+
+
+This is not clean because the first IF statement is confusing to read.
+I also got rid of any abbreviation in the code
+
+5A. 
+FUNCTION printSubtotal (subTotal, discountRate)
+  SET total to ((subtotal *discountRate) + (subtotal*tax))
+  PRINT "Your total due is:" + total
+
+  FUNCTION receivePayment( total, paymentType , amountReceived )
+    IF paymentType = "CASH" THEN
+    set changeDue to amountReceived- total
+      PRINT "Change due:" + changeDue
+   ELSE IF paymentType = "CREDIT CARD" THEN
+     CALL chargeCard RETURNING isCharged
+       IF isCharged = true THEN
+       PRINT "Your credit card has been charged" + total
+       ELSE IF isCharged = false then
+       PRINT "We're sorry but the payment was declined"
+ END IF
+ END FUNCTION
+   
+Broke up the function into two seperate functions. one adds the total and then
+the other function recieves the total and charges the customer.
+5B.
+FUNCTION checkoutBook (book, guest)
+  IF guest.isAccountActive = false THEN
+  PRINT 'Please create an Account'
+  ELSE IF guest.isAccountActive = true THEN
+    CHECK IF guest.hasOverdueBooks THEN 
+    PRINT "You have" + overdueBooks + "books Overdue"
+    CHECK IF guest.hasOutstandingFees
+      IF outstandingFees !=0 THEN 
+      PRINT "You must pay your fee of: $" + fee "before checking out a new Book"
+      ELSE IF outstandingFees =0 THEN
+      APPEND book to guest.books
+      SET book.status to "Checked Out"
+      PRINT "Your books have been issued."
+      END IF
+    END IF
+   END IF
+ END IF
+END FUNCTION
+
+5C.
+CLASS bankAccount
+
+  FUNCTION displayBalance
+    PRINT balance
+   END FUNCTION
+   
+  FUNCTION deposit( amountDeposited )
+    set balance to balance + amountDeposited
+    PRINT balance
+  END FUNCTION
+  
+  FUNCTION withdraw( amountWithdrawn )
+  IF balance > amountWithdrawn THEN
+    SET balance to balance - amountWithdrawn
+    PRINT balance
+  END IF
+  END FUNCTION
+  
+  FUNCTION creditCardOffer
+    IF NOT(customer.hasCreditCard) THEN
+      CALL offerCreditCArd
+    END IF
+  END FUNCTION
+ ....
+ ....
+ ....
+
+END
+  
+6. Square 
+Given an array of integers, find out whether the sum of the integers is a perfect square. If 
+it is a perfect square, return the square root, otherwise return the sum.
+
+Example:
+[10,1,4,6,1,1,2] returns 5 because the square root of 25 is 5.
+[1,1] returns 2 because 2 is not a perfect square.
+The square root of 2 is approximately 1.414213562373095.
+
+FUNCTION arraySum ()
+reduce array to find sum
+Return arraySum
+
+FUNCTION square (array)
+ set arrayTotal = arraySum
+ IF (arrayTotal % Math.sqrt(arrayTotal) === 0) THEN
+  PRINT squareRoot
+}
+  ELSE IF (arrayTotal % Math.sqrt(arrayTotal) != 0) THEN
+  PRINT arrayTotal
+
+```Javascript
+var numbers = [10,1,4,6,1,1,2];
+var sum = 0;
+for(var i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+}
+    if (sum % Math.sqrt(sum) === 0) {
+    console.log("Perfect Square! " + Math.sqrt(sum));
+}
+    else if (sum % Math.sqrt(sum) != 0) {
+    console.log(sum);
+}
+```
+
+7. Duplicate 
+Given an array of integers, find out whether the array contains any duplicate elements. 
+The function should return true if any value appears at least twice in the array, and false if every element is distinct.
+
+```Javascript
+
+var numbers = [10,1,4,6,1,1,2];
+function isDuplicate(numbers) {
+    var loggedValues = [];
+    for (var i = 0; i < numbers.length; ++i) {
+        var values = numbers[i];
+        if (loggedValues.indexOf(values) !== -1) {
+            return true;
+        }
+        loggedValues.push(values);
+    }
+    return false;
+}
+console.log(isDuplicate(numbers))
+```
